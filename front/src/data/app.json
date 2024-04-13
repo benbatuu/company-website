@@ -1,0 +1,125 @@
+{
+    "settings": {
+        "siteName": "Onovo",
+        "preloader": true,
+        "formspreeURL": "https://formspree.io/f/your_api_key",
+        "portfolio": {
+            "categories": [
+                {
+                    "label": "Marketing",
+                    "slug": "marketing"
+                },
+                {
+                    "label": "Interactive",
+                    "slug": "interactive"
+                },
+                {
+                    "label": "Design",
+                    "slug": "design"
+                },
+                {
+                    "label": "Branding",
+                    "slug": "branding"
+                }
+            ]
+        }
+    },
+    "header": {
+        "logo": {
+            "image": "/images/logo-black.png",
+            "image_white": "/images/logo-main.png",
+            "alt": "logo"
+        },
+        "menu": [
+            {
+                "label": "Home",
+                "link": "/"
+            },
+            {
+                "label": "About",
+                "link": "/about"
+            },
+            {
+                "label": "Projects",
+                "link": "/projects"
+            },
+            {
+                "label": "Blog",
+                "link": "/blog"
+            },
+            {
+                "label": "Contact Us",
+                "link": "/contact"
+            }
+        ],
+        "button": {
+            "label": "Showcase",
+            "link": "/projects"
+        },
+        "button2": {
+            "label": "Start a Project",
+            "link": "/contact"
+        }
+    },
+    "footer": {
+        "logo": {
+            "image": "/images/logo-black.png",
+            "alt": "logo"
+        },
+        "gallery": [
+            {
+                "image": "/images/post5-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            },
+            {
+                "image": "/images/post4-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            },
+            {
+                "image": "/images/post3-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            },
+            {
+                "image": "/images/post4-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            },
+            {
+                "image": "/images/post1-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            },
+            {
+                "image": "/images/post6-1024x683.jpg",
+                "title": "image",
+                "alt": "image"
+            }
+        ],
+        "copy": "© 2023 ONOVO by <a href='https://bslthemes.com' target='blank' class='onovo-lnk lnk--white'>bslthemes Team</a>. All rights reserved."
+    },
+    "social": [
+        {
+            "link": "https://facebook.com",
+            "icon": "fab fa-facebook",
+            "title": "Facebook"
+        },
+        {
+            "link": "https://twitter.com",
+            "icon": "fab fa-twitter",
+            "title": "Twitter"
+        },
+        {
+            "link": "https://linkedin.com",
+            "icon": "fab fa-instagram",
+            "title": "Instagram"
+        },
+        {
+            "link": "https://linkedin.com",
+            "icon": "fab fa-linkedin",
+            "title": "Linkedin"
+        }
+    ]
+}

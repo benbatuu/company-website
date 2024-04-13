@@ -1,0 +1,22 @@
+{
+    "title": "A Design Agency <br/>Delivering Success by <br/>Winning Hearts",
+    "subtitle": "Welcome to Onovo",
+    "number": {
+        "value": "14",
+        "label": "Years of Digital Solutions Experience"
+    },
+    "items": [
+        {
+            "title": "Our Mission",
+            "text": "From the moment our company was founded we have helped our clients find <strong>exceptional solutions for their businesses</strong> memorable brands and digital products. Our expertise grows with each year, and our accumulated experience."
+        },
+        {
+            "title": "Our Goal",
+            "text": "Our goal is to deliver amazing experiences that make people talk, and build strategic value for brands, tech, entertainment.",
+            "button": {
+                "label": "More About Us",
+                "link": "/about"
+            }
+        }
+    ]
+}

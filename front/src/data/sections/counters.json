@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "value": "23",
+            "label": "Team members",
+            "after": ""
+        },
+        {
+            "value": "99",
+            "label": "Completed projects",
+            "after": "+"
+        },
+        {
+            "value": "12",
+            "label": "Lines of code",
+            "after": "M"
+        }
+    ]
+}

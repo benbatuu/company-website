@@ -1,0 +1,52 @@
+{
+    "items": [
+        {
+            "title": "Museums <br>Art Concept",
+            "subtitle": "Branding",
+            "image": {
+                "desktop": "/images/hero-p-1.jpg",
+                "mobile": "/images/project-n01-3.jpg"
+            },
+            "button": {
+                "label": "View Project",
+                "link": "/projects/project-01"
+            }
+        },
+        {
+            "title": "Headphones <br />3D Rendering",
+            "subtitle": "Design",
+            "image": {
+                "desktop": "/images/hero-p-3.jpg",
+                "mobile": "/images/project-2.jpg"
+            },
+            "button": {
+                "label": "View Project",
+                "link": "/projects/project-02"
+            }
+        },
+        {
+            "title": "Daily Weather <br>Mobile App",
+            "subtitle": "Design",
+            "image": {
+                "desktop": "/images/hero-27.jpg",
+                "mobile": "/images/hero-27.jpg"
+            },
+            "button": {
+                "label": "View Project",
+                "link": "/projects/project-03"
+            }
+        },
+        {
+            "title": "Market Graph <br>Concept",
+            "subtitle": "Marketing",
+            "image": {
+                "desktop": "/images/hero-p-2-1.jpg",
+                "mobile": "/images/hero-p-2-1.jpg"
+            },
+            "button": {
+                "label": "View Project",
+                "link": "/projects/project-04"
+            }
+        }
+    ]
+}

@@ -1,0 +1,381 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/client"
+  previewFeatures = ["multiSchema"]
+  binaryTargets   = ["native", "darwin", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["users", "transactions", "services", "pages", "contacts", "offers", "metatags", "blogs"]
+}
+
+model blogcomment{
+  id        Int       @id @default(autoincrement())
+  blogid    Int
+  name      String
+  email     String
+  comment   String
+  createdat DateTime  @default(now())
+  createdby Int
+  updatedat DateTime?
+  updatedby Int?
+  isactive  Int
+  blog      blog      @relation(fields: [blogid], references: [id])
+
+  @@schema("blogs")
+}
+
+model blog {
+  id             Int          @id @default(autoincrement())
+  title          String
+  content        String
+  slug           String
+  featuredimage  String
+  blogcategoryid Int
+  metaid         Int
+  createdat      DateTime     @default(now())
+  createdby      Int
+  updatedat      DateTime?
+  updatedby      Int?
+  isactive       Int
+  blogcategory   blogcategory @relation(fields: [blogcategoryid], references: [id])
+  blogcomments   blogcomment[]
+
+  @@schema("blogs")
+}
+
+model blogcategory {
+  id               Int       @id @default(autoincrement())
+  name             String
+  description      String
+  featuredimage    String
+  metaid           Int
+  createdat        DateTime  @default(now())
+  createdby        Int
+  updatedat        DateTime?
+  updatedby        Int?
+  isactive         Int
+  blogs            blog[]
+  blogcategorymeta meta?     @relation(fields: [metaid], references: [id])
+
+  @@schema("blogs")
+}
+
+model meta {
+  id              Int               @id @default(autoincrement())
+  metatitle       String
+  metadescription String
+  metakeywords    String
+  metarobots      String
+  metahttpequiv   String
+  metalanguage    String
+  metaauthor      String
+  metarevisit     String
+  createdat       DateTime          @default(now())
+  createdby       Int
+  updatedat       DateTime?
+  updatedby       Int?
+  pages           page[]            @relation("metatags")
+  services        service[]         @relation("metatags")
+  servicecategory servicecategory[] @relation("metatags")
+  blogcategory    blogcategory[]
+
+  @@schema("metatags")
+}
+
+model offer {
+  id                Int       @id @default(autoincrement())
+  name              String
+  description       String
+  saleprice         Float
+  salepricecurrency String
+  salepriceperiod   String
+  discountprice     Float
+  discountamount    String
+  createdat         DateTime  @default(now())
+  createdby         Int
+  updatedat         DateTime?
+  updatedby         Int?
+  isactive          Int
+  serviceid         Int
+  service           service?  @relation(fields: [serviceid], references: [id])
+  useroffers        user?     @relation("useroffer", fields: [id], references: [id])
+
+  @@schema("offers")
+}
+
+model newsletter {
+  id        Int       @id @default(autoincrement())
+  email     String
+  createdat DateTime  @default(now())
+  createdby Int
+  updatedat DateTime?
+  updatedby Int?
+
+  @@schema("contacts")
+}
+
+model contact {
+  id                Int              @id @default(autoincrement())
+  name              String
+  email             String
+  phone             String
+  message           String
+  attachment        String?
+  createdat         DateTime         @default(now())
+  createdby         Int
+  updatedat         DateTime?
+  updatedby         Int?
+  isclosed          Int
+  servicecategoryid Int
+  servicecategory   servicecategory? @relation(fields: [servicecategoryid], references: [id])
+  serviceid         Int
+  service           service?         @relation(fields: [serviceid], references: [id])
+  usercontacts      user?            @relation("usercontact", fields: [id], references: [id])
+
+  @@schema("contacts")
+}
+
+model page {
+  id        Int       @id @default(autoincrement())
+  metaid    Int
+  name      String
+  content   String
+  slug      String
+  createdat DateTime  @default(now())
+  createdby Int
+  updatedat DateTime?
+  updatedby Int?
+  isactive  Int
+  serviceid Int
+  service   service?  @relation(fields: [serviceid], references: [id])
+  userpages user?     @relation("userpage", fields: [id], references: [id])
+  metatags  meta?     @relation("metatags", fields: [metaid], references: [id])
+
+  @@schema("pages")
+}
+
+model servicecategory {
+  id                  Int       @id @default(autoincrement())
+  name                String
+  description         String
+  metaid              Int
+  createdat           DateTime  @default(now())
+  createdby           Int
+  updatedat           DateTime?
+  updatedby           Int?
+  isactive            Int
+  services            service[]
+  contacts            contact[]
+  userservicecategory user?     @relation("userservicecategory", fields: [id], references: [id])
+  metatags            meta?     @relation("metatags", fields: [metaid], references: [id])
+
+  @@schema("services")
+}
+
+model service {
+  id                Int             @id @default(autoincrement())
+  name              String
+  description       Json
+  servicecategoryid Int
+  metaid            Int
+  createdat         DateTime        @default(now())
+  createdby         Int
+  updatedat         DateTime?
+  updatedby         Int?
+  isactive          Int
+  servicecategory   servicecategory @relation(fields: [servicecategoryid], references: [id])
+  pages             page[]
+  contacts          contact[]
+  offers            offer[]
+  userservice       user?           @relation("userservice", fields: [id], references: [id])
+  metatags          meta?           @relation("metatags", fields: [metaid], references: [id])
+
+  @@schema("services")
+}
+
+model entrance {
+  id        Int      @id @default(autoincrement())
+  type      Int
+  useragent String
+  ipaddress String
+  userid    Int
+  createdat DateTime @default(now())
+
+  @@schema("transactions")
+}
+
+model apiclient {
+  id          Int       @id @default(autoincrement())
+  name        String
+  key         String    @unique
+  secret      String    @unique
+  type        Int
+  createdat   DateTime  @default(now())
+  createdby   Int
+  updatedat   DateTime?
+  updatedby   Int?
+  isactive    Boolean
+  createduser user      @relation("createdbyapiclient", fields: [createdby], references: [id])
+  updateduser user?     @relation("updatedbyapiclient", fields: [updatedby], references: [id])
+
+  @@schema("users")
+}
+
+model refreshtoken {
+  id        Int       @id @default(autoincrement())
+  userid    Int
+  token     String
+  createdat DateTime  @default(now())
+  updatedat DateTime?
+  expiresat DateTime?
+  user      user      @relation(fields: [userid], references: [id])
+
+  @@schema("users")
+}
+
+model revokedtoken {
+  id    Int      @id @default(autoincrement())
+  token String   @unique
+  date  DateTime @default(now())
+
+  @@schema("users")
+}
+
+model role {
+  id              Int              @id @default(autoincrement())
+  name            String
+  createdby       Int
+  createdat       DateTime         @default(now())
+  updatedby       Int?
+  updatedat       DateTime?
+  issystemrole    Boolean          @default(false)
+  createduser     user             @relation("createdbyrole", fields: [createdby], references: [id])
+  updateduser     user?            @relation("updatedbyrole", fields: [updatedby], references: [id])
+  rolepermissions rolepermission[]
+  userroles       userrole[]
+
+  @@schema("users")
+}
+
+model notification {
+  id        Int       @id @default(autoincrement())
+  touserid  Int
+  message   String
+  url       String
+  createdby Int
+  createdat DateTime  @default(now())
+  readedat  DateTime?
+  to        user      @relation(fields: [touserid], references: [id])
+
+  @@schema("users")
+}
+
+model permission {
+  id              Int              @id @default(autoincrement())
+  name            String
+  value           String           @unique
+  group           String
+  description     String
+  createdby       Int
+  createdat       DateTime         @default(now())
+  updatedby       Int?
+  updatedat       DateTime?
+  createduser     user             @relation("createdbypermission", fields: [createdby], references: [id])
+  updateduser     user?            @relation("updatedbypermission", fields: [updatedby], references: [id])
+  rolepermissions rolepermission[]
+  userpermissions userpermission[]
+
+  @@schema("users")
+}
+
+model rolepermission {
+  id           Int        @id @default(autoincrement())
+  roleid       Int
+  permissionid Int
+  createdat    DateTime   @default(now())
+  createdby    Int
+  updatedby    Int?
+  updatedat    DateTime?
+  createduser  user       @relation("createdbyrolepermission", fields: [createdby], references: [id])
+  permission   permission @relation(fields: [permissionid], references: [id])
+  role         role       @relation(fields: [roleid], references: [id], onDelete: Cascade)
+  updateduser  user?      @relation("updatedbyrolepermission", fields: [updatedby], references: [id])
+
+  @@schema("users")
+}
+
+model user {
+  id                     Int               @id @default(autoincrement())
+  firstname              String
+  lastname               String
+  phone                  String?
+  email                  String            @unique
+  password               String
+  createdby              Int
+  createdat              DateTime          @default(now())
+  updatedby              Int?
+  updatedat              DateTime?
+  status                 Int               @default(1)
+  notificationuser       notification[]
+  createdapiclients      apiclient[]       @relation("createdbyapiclient")
+  updatedapiclients      apiclient[]       @relation("updatedbyapiclient")
+  createdpermissions     permission[]      @relation("createdbypermission")
+  updatedpermissions     permission[]      @relation("updatedbypermission")
+  refreshtokens          refreshtoken[]
+  createdroles           role[]            @relation("createdbyrole")
+  updatedroles           role[]            @relation("updatedbyrole")
+  createdrolepermissions rolepermission[]  @relation("createdbyrolepermission")
+  updatedrolepermissions rolepermission[]  @relation("updatedbyrolepermission")
+  createduser            user              @relation("usercreateduser", fields: [createdby], references: [id])
+  createdusers           user[]            @relation("usercreateduser")
+  updateduser            user?             @relation("userupdateduser", fields: [updatedby], references: [id])
+  updatedusers           user[]            @relation("userupdateduser")
+  createduserpermissions userpermission[]  @relation("createdbyuserpermission")
+  updateduserpermissions userpermission[]  @relation("updatedbyuserpermission")
+  userpermissions        userpermission[]  @relation("user")
+  createduserroles       userrole[]        @relation("createdbyuserrole")
+  updateduserroles       userrole[]        @relation("updatedbyuserrole")
+  userroles              userrole[]        @relation("user")
+  useroffers             offer[]           @relation("useroffer")
+  usercontacts           contact[]         @relation("usercontact")
+  userpages              page[]            @relation("userpage")
+  userservicecategory    servicecategory[] @relation("userservicecategory")
+  userservice            service[]         @relation("userservice")
+
+  @@schema("users")
+}
+
+model userpermission {
+  id           Int        @id @default(autoincrement())
+  userid       Int
+  permissionid Int
+  createdby    Int
+  createdat    DateTime   @default(now())
+  updatedby    Int?
+  updatedat    DateTime?
+  createduser  user       @relation("createdbyuserpermission", fields: [createdby], references: [id])
+  permission   permission @relation(fields: [permissionid], references: [id])
+  updateduser  user?      @relation("updatedbyuserpermission", fields: [updatedby], references: [id])
+  user         user       @relation("user", fields: [userid], references: [id])
+
+  @@schema("users")
+}
+
+model userrole {
+  id          Int       @id @default(autoincrement())
+  userid      Int
+  roleid      Int
+  createdby   Int
+  createdat   DateTime  @default(now())
+  updatedby   Int?
+  updatedat   DateTime?
+  createduser user      @relation("createdbyuserrole", fields: [createdby], references: [id])
+  role        role      @relation(fields: [roleid], references: [id])
+  updateduser user?     @relation("updatedbyuserrole", fields: [updatedby], references: [id])
+  user        user      @relation("user", fields: [userid], references: [id])
+
+  @@schema("users")
+}

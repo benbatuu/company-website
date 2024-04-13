@@ -1,0 +1,40 @@
+{
+    "subtitle": "Our History",
+    "title": "Brands Through Innovation in <br>Digital Transformation.",
+    "button": {
+        "label": "Learn More",
+        "link": "/about"
+    },
+    "items": [
+        {
+            "image": "/images/post1-1000x667.jpg",
+            "title": "Inception and Growth",
+            "subtitle": "2005",
+            "text": "The company, founded in 2005, started its operations modestly but quickly grew to become a significant player in the industry."
+        },
+        {
+            "image": "/images/post1-1000x667.jpg",
+            "subtitle": "2010",
+            "title": "Innovative Solutions and Customer Focus",
+            "text": "The company began to be recognized in the industry for its customer-focused approach and innovative solutions. During this period, it specialized particularly in web and mobile application development."
+        },
+        {
+            "image": "/images/post1-1000x667.jpg",
+            "subtitle": "2014",
+            "title": "International Expansion and Technological Investment",
+            "text": "The company started operating internationally and continued to maintain its quality and creativity in its work. During this period, it also worked in areas such as artificial intelligence and data analytics."
+        },
+        {
+            "image": "/images/post1-1000x667.jpg",
+            "subtitle": "2020",
+            "title": "Technological Leadership and Social Responsibility",
+            "text": "The company continued to offer its customers the latest solutions by closely following developments in technology. It also actively participated in social responsibility projects and consolidated its leadership position in the industry."
+        },
+        {
+            "image": "/images/post1-1000x667.jpg",
+            "subtitle": "Present",
+            "title": "Sustaining a Significant Position in the Industry",
+            "text": "With the experience and success it has achieved so far, the company has become one of the important players in the industry. Standing out with the quality, creativity, and technology usage in its work, the company continues to provide the best service to its customers."
+        }
+    ]
+}

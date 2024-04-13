@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "image": "/images/serv-icon1.png",
+            "title": "Creation",
+            "text": "Web development goes beyond marketing—it's about aesthetics too. Our team blends functionality with beautiful design for a great user experience.",
+            "link": "/services/service-1"
+        },
+        {
+            "image": "/images/serv-icon2.png",
+            "title": "Websites",
+            "text": "We offer reliable, user-focused web solutions that reflect your brand's style and values, ensuring a pleasant user experience.",
+            "link": "/services/service-2"
+        },
+        {
+            "image": "/images/serv-icon3.png",
+            "title": "Studio",
+            "text": "Our professional teams bring your projects to life with a focus on both functionality and aesthetic appeal, elevating your brand.",
+            "link": "/services/service-3"
+        }
+    ]
+}
