@@ -1,4 +1,8 @@
-# Software Company Website and API Service
+```
+npm install
+npm run dev
+```
 
-<code> Start Date = 23.03.2024</code>
-<code> Last Update = 13.04.2024</code>
+```
+open http://localhost:3000
+```
